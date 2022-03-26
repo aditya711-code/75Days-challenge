@@ -1,4 +1,5 @@
   int pivotIndex(vector<int>& nums) {
+    //Prefix Sum method
         
      int sum=0; 
         for(auto i:nums)
