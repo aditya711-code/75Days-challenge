@@ -1,31 +1,22 @@
  int findPairs(vector<int>& nums, int k) {
        int count=0;
-        sort(nums.begin(),nums.end());
-        int slow=0;
-        int fast=1;
-        int n=nums.size();
-        while(slow<n && fast<n)
+        unordered_map<int,int>m;
+        for(int i=0;i<nums.size();i++)
         {
-            if(nums[fast]-nums[slow]==k)
+            m[nums[i]]++;
+            
+        }
+        for(auto i:m)
+        {
+            if(k==0)
+            {
+                if(i.second>1)
+                    count++;
+            }
+            else if(m.find(k+i.first)!=m.end())
             {
                 count++;
-                fast++;
-                slow++;
-                while(fast<n && nums[fast]==nums[fast-1])
-                {
-                    fast++;
-                }
             }
-            else if(nums[fast]-nums[slow]>k)
-            {
-                slow++;
-                if(fast-slow==0)
-                    fast++;
-                
-            }
-            else
-                fast++;
-            
         }
         return count;
         
